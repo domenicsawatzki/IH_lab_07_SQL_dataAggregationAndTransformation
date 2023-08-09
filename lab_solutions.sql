@@ -47,7 +47,11 @@ END AS rental_duration
 FROM sakila.film
 ORDER BY title ASC;
 
--- 4. As a marketing team for a movie rental company, we need to create a personalized email campaign for our customers. To achieve this, we want to retrieve the concatenated first and last names of our customers, along with the first 3 characters of their email address, so that we can address them by their first name and use their email address to send personalized recommendations. The results should be ordered by last name in ascending order to make it easier for us to use the data.
+-- 4. As a marketing team for a movie rental company, we need to create a personalized email campaign for our customers. To achieve this, we want to retrieve the concatenated first and last names of our customers, along with the first 3 characters of their email address, 
+-- so that we can address them by their first name and use their email address to send personalized recommendations. The results should be ordered by last name in ascending order to make it easier for us to use the data.
+SELECT CONCAT(first_name, ' ',last_name,' ', LEFT(email, 3)) AS concat
+FROM sakila.customer
+ORDER BY last_name ASC;
 
 -- Challenge 2
 -- 1. We need to analyze the films in our collection to gain insights into our business operations. Using the film table, determine:
@@ -68,6 +72,9 @@ GROUP BY rating
 ORDER BY number_of_films DESC;
 
 -- 2. We need to track the performance of our employees. Using the rental table, determine the number of rentals processed by each employee. This will help us identify our top-performing employees and areas where additional training may be necessary.
+SELECT staff_id, COUNT(*) AS number_of_rentals
+FROM sakila.rental
+GROUP BY staff_id;
 
 -- 3. Using the film table, determine:
 -- 3.1 The mean film duration for each rating, and sort the results in descending order of the mean duration. Round off the average lengths to two decimal places. This will help us identify popular movie lengths for each category.
