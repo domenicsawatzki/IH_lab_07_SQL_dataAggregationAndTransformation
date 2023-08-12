@@ -11,7 +11,7 @@ ORDER BY number_of_films DESC;
 SELECT CONCAT(s.first_name, ' ', s.last_name) AS name, SUM(amount) AS total_amount
 FROM sakila.payment p
 JOIN sakila.staff s USING (staff_id)
-WHERE payment_date LIKE '2005-08%'
+WHERE p.payment_date LIKE '2005-08%'
 GROUP BY p.staff_id;
 
 -- Which actor has appeared in the most films?
